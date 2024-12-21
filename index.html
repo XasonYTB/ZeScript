@@ -87,29 +87,9 @@
             overflow: hidden;
             position: relative;
             height: 150px;
-        }
-        .reviews .review-card {
-            display: inline-block;
-            background: #222;
-            border-radius: 8px;
-            padding: 10px;
-            margin: 10px;
-            width: calc(33% - 20px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-            position: absolute;
-            animation: moveLeft 10s linear infinite;
-            transition: transform 0.2s;
-        }
-        .reviews .review-card:hover {
-            transform: scale(1.1);
-        }
-        @keyframes moveLeft {
-            0% {
-                left: 100%;
-            }
-            100% {
-                left: -100%;
-            }
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
         }
         .faq {
             margin: 40px auto;
@@ -205,7 +185,6 @@ task.spawn(updateNamePeriodically)
         <div class="review-card">
             <p>User3: "i think they meant to call it EzScript"</p>
         </div>
-        <!-- Added more reviews -->
         <div class="review-card">
             <p>User4: "Great script! Helped me a lot."</p>
         </div>
@@ -237,6 +216,27 @@ task.spawn(updateNamePeriodically)
                 alert('Failed to copy script: ' + err);
             });
         }
+
+        function moveReviews() {
+            const reviews = document.querySelectorAll('.review-card');
+            let position = 100;
+            const speed = 0.1; // Adjust this value to make the movement slower or faster
+
+            function animate() {
+                reviews.forEach(review => {
+                    review.style.transform = `translateX(${position}%)`;
+                });
+                position -= speed;
+                if (position < -100) {
+                    position = 100;
+                }
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        window.onload = moveReviews;
     </script>
 </body>
 </html>
