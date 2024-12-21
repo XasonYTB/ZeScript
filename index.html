@@ -88,8 +88,13 @@
             position: relative;
             height: 150px;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
+        }
+        .reviews .review-card {
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s;
         }
         .faq {
             margin: 40px auto;
@@ -217,28 +222,39 @@ task.spawn(updateNamePeriodically)
             });
         }
 
-        function moveReviews() {
+        function showRandomReview() {
             const reviews = document.querySelectorAll('.review-card');
-            let position = 100;
-            const speed = 0.1; // Adjust this value to make the movement slower or faster
-            const reviewWidth = 33; // Width of the review cards in percentage
-            const gap = 10; // Gap between the review cards in percentage
+            let currentIndex = -1;
 
-            function animate() {
-                reviews.forEach((review, index) => {
-                    review.style.transform = `translateX(${position - (index * (reviewWidth + gap))}%)`;
-                    if (position - (index * (reviewWidth + gap)) < -reviewWidth) {
-                        position += reviewWidth + gap;
-                    }
-                });
-                position -= speed;
-                requestAnimationFrame(animate);
+            function getRandomIndex() {
+                let newIndex;
+                do {
+                    newIndex = Math.floor(Math.random() * reviews.length);
+                } while (newIndex === currentIndex);
+                return newIndex;
             }
 
-            animate();
+            function fadeOut(element) {
+                element.style.opacity = 0;
+            }
+
+            function fadeIn(element) {
+                element.style.opacity = 1;
+            }
+
+            function switchReview() {
+                if (currentIndex !== -1) {
+                    fadeOut(reviews[currentIndex]);
+                }
+                currentIndex = getRandomIndex();
+                fadeIn(reviews[currentIndex]);
+            }
+
+            setInterval(switchReview, 5000);
+            switchReview(); // Initial call to display a review immediately
         }
 
-        window.onload = moveReviews;
+        window.onload = showRandomReview;
     </script>
 </body>
 </html>
