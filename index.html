@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeScripts - Roblox Exploiting Scripts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .script-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .script-card img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .script-card pre {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .copy-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .copy-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ZeScripts</h1>
+        <p>Your place for Roblox exploiting scripts</p>
+    </header>
+    <main>
+        <div class="script-card">
+            <h2>Recording Name Privacy</h2>
+            <img src="placeholder-image.jpg" alt="Privacy Script Image" />
+            <p>This script helps you hide your username while recording by replacing it locally with a randomized name.</p>
+            <pre id="script-code">
+-- Define the user's actual name and display name.
+local player = game.Players.LocalPlayer
+local realName = player.Name
+local displayName = player.DisplayName
+
+-- List of random names to select from.
+local randomNames = {
+    "SkyWalker", "PixelMage", "CodeCrafter", "GameChanger", "ShadowBlade",
+    "SecretAgent", "MemeLord", "404NotFound", "Anonymous", "BananaKing",
+    "TheChosenOne", "InvisibleInk", "DebugMaster", "OopsIDidItAgain"
+}
+
+-- Function to pick a random name from the list.
+local function getRandomName()
+    return randomNames[math.random(1, #randomNames)]
+end
+
+-- Function to replace occurrences of the username or display name.
+local function replaceName(instance, newName)
+    if instance:IsA("TextLabel") or instance:IsA("TextBox") or instance:IsA("TextButton") then
+        -- Check and replace realName or displayName.
+        if instance.Text:find(realName) then
+            instance.Text = instance.Text:gsub(realName, newName)
+        end
+        if instance.Text:find(displayName) then
+            instance.Text = instance.Text:gsub(displayName, newName)
+        end
+    end
+end
+
+-- Recursive function to traverse all descendants in the game and replace names.
+local function traverseAndReplace(parent, newName)
+    for _, child in pairs(parent:GetDescendants()) do
+        replaceName(child, newName)
+    end
+end
+
+-- Function to update the name every 2 minutes.
+local function updateNamePeriodically()
+    while true do
+        local newName = getRandomName()
+        traverseAndReplace(game, newName)
+        wait(120) -- Wait for 2 minutes before changing again.
+    end
+end
+
+-- Initial scan of the game with a random name.
+traverseAndReplace(game, getRandomName())
+-- Start the periodic name update.
+task.spawn(updateNamePeriodically)
+            </pre>
+            <button class="copy-btn" onclick="copyScript()">Copy Script</button>
+        </div>
+    </main>
+    <script>
+        function copyScript() {
+            const scriptCode = document.getElementById('script-code').innerText;
+            navigator.clipboard.writeText(scriptCode).then(() => {
+                alert('Script copied to clipboard!');
+            }).catch(err => {
+                alert('Failed to copy script: ' + err);
+            });
+        }
+    </script>
+</body>
+</html>
