@@ -84,6 +84,9 @@
         }
         .reviews {
             margin: 40px 20px;
+            overflow: hidden;
+            position: relative;
+            height: 150px;
         }
         .reviews .review-card {
             display: inline-block;
@@ -93,9 +96,20 @@
             margin: 10px;
             width: calc(33% - 20px);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+            position: absolute;
+            animation: moveLeft 10s linear infinite;
+            transition: transform 0.2s;
         }
-        .reviews .review-card p {
-            margin: 0;
+        .reviews .review-card:hover {
+            transform: scale(1.1);
+        }
+        @keyframes moveLeft {
+            0% {
+                left: 100%;
+            }
+            100% {
+                left: -100%;
+            }
         }
         .faq {
             margin: 40px auto;
@@ -115,7 +129,7 @@
         <h1>ZeScripts</h1>
         <p>The best/worst roblox scripts</p>
     </header>
-        <div class="translations">
+    <div class="translations">
         <h2>It works 97% of the time</h2>
         <p>That's less praying, and more playing.</p>
     </div>
@@ -182,7 +196,7 @@ task.spawn(updateNamePeriodically)
         <div class="review-card">
             <p>pantl — "Im i commiting identity fraud? Or why im i living as a completly diffirent person."</p>
         </div>
-    <div class="review-card">
+        <div class="review-card">
             <p>OOFBOY — uuhhhhh Gay sex?</p>
         </div>
         <div class="review-card">
@@ -190,6 +204,16 @@ task.spawn(updateNamePeriodically)
         </div>
         <div class="review-card">
             <p>User3: "i think they meant to call it EzScript"</p>
+        </div>
+        <!-- Added more reviews -->
+        <div class="review-card">
+            <p>User4: "Great script! Helped me a lot."</p>
+        </div>
+        <div class="review-card">
+            <p>User5: "Not bad, but could be better."</p>
+        </div>
+        <div class="review-card">
+            <p>User6: "Worked perfectly for my needs."</p>
         </div>
     </div>
 
