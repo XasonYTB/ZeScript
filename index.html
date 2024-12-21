@@ -9,42 +9,72 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-        }
-        header {
-            background-color: #222;
+            background-color: #000;
             color: #fff;
-            padding: 20px;
             text-align: center;
         }
-        main {
+        header {
+            padding: 50px 20px;
+            background: linear-gradient(180deg, #222, #111);
+        }
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.2em;
+        }
+        .hero {
+            margin: 40px auto;
             padding: 20px;
-            max-width: 800px;
-            margin: auto;
+        }
+        .hero img {
+            max-width: 80%;
+            border-radius: 10px;
+        }
+        .executor-list {
+            margin: 40px auto;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .executor-list img {
+            max-height: 50px;
+        }
+        .translations {
+            margin: 60px 20px;
+        }
+        .translations h2 {
+            margin-bottom: 20px;
+        }
+        footer {
+            padding: 20px;
+            background: #111;
+            font-size: 0.9em;
         }
         .script-card {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: left;
+            background: #111;
+            border-radius: 10px;
             padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .script-card img {
-            max-width: 100%;
-            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
         }
         .script-card pre {
-            background: #f9f9f9;
-            padding: 10px;
-            border-radius: 5px;
+            background: #222;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
             overflow-x: auto;
         }
         .copy-btn {
             background-color: #007bff;
             color: #fff;
             border: none;
-            padding: 10px 15px;
+            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
             margin-top: 10px;
@@ -52,19 +82,61 @@
         .copy-btn:hover {
             background-color: #0056b3;
         }
+        .reviews {
+            margin: 40px 20px;
+        }
+        .reviews .review-card {
+            display: inline-block;
+            background: #222;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px;
+            width: calc(33% - 20px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .reviews .review-card p {
+            margin: 0;
+        }
+        .faq {
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        .faq h3 {
+            margin-bottom: 10px;
+        }
+        .faq p {
+            margin: 0 0 15px;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>ZeScripts</h1>
-        <p>Your place for Roblox exploiting scripts</p>
+        <p>The best/worst roblox scripts</p>
     </header>
-    <main>
-        <div class="script-card">
-            <h2>Recording Name Privacy</h2>
-            <img src="https://ibb.co/KVdh6Gs" alt="Privacy Script Image" />
-            <p>This script helps you hide your username while recording by replacing it locally with a randomized name.</p>
-            <pre id="script-code">
+
+    <div class="hero">
+        <img src="/path-to-mockup-image.png" alt="Laptop displaying a script" />
+    </div>
+
+    <div class="executor-list">
+        <img src="/path-to-solara-logo.png" alt="Solara" />
+        <img src="/path-to-wave-logo.png" alt="Wave" />
+        <img src="/path-to-synapse-logo.png" alt="Synapse Z" />
+        <img src="/path-to-macsploit-logo.png" alt="Macsploit" />
+        <img src="/path-to-seliware-logo.png" alt="Seliware" />
+    </div>
+
+    <div class="translations">
+        <h2>It works 88% of the time</h2>
+        <p>That's less praying, and more playing.</p>
+    </div>
+
+    <div class="script-card">
+        <h2>Recording Name Privacy</h2>
+        <p>This script helps you hide your username while recording by replacing it locally with a randomized name.</p>
+        <pre id="script-code">
 -- Define the user's actual name and display name.
 local player = game.Players.LocalPlayer
 local realName = player.Name
@@ -115,10 +187,36 @@ end
 traverseAndReplace(game, getRandomName())
 -- Start the periodic name update.
 task.spawn(updateNamePeriodically)
-            </pre>
-            <button class="copy-btn" onclick="copyScript()">Copy Script</button>
+        </pre>
+        <button class="copy-btn" onclick="copyScript()">Copy Script</button>
+    </div>
+
+    <div class="reviews">
+        <div class="review-card">
+            <p>User1: "Great script, works perfectly!"</p>
         </div>
-    </main>
+    <div class="review-card">
+            <p>User4: "i used to have skill issues... i still have one but no one knows now"</p>
+        </div>
+        <div class="review-card">
+            <p>User2: "now i wont get banned for recording also uhh very laggy fr."</p>
+        </div>
+        <div class="review-card">
+            <p>User3: "i think they meant to call it EzScript"</p>
+        </div>
+    </div>
+
+    <div class="faq">
+        <h3>FAQ</h3>
+        <p><strong>How do I use this script?</strong> Use your preferred executor to run it in Roblox. should work with: Swift, argon and more!</p>
+        <p><strong>Does it work on mobile?</strong> some yes some no. depends on how high level the script is but itll probably work.</p>
+        <p><strong>why does the script not work?</strong> your executor isnt working or the script is just badly coded press f9 and report us the issue on are discord server.</p>
+    </div>
+
+    <footer>
+        <p>This website is not affiliated with, endorsed, or certified by any official entities. All trademarks belong to their respective owners.</p>
+    </footer>
+
     <script>
         function copyScript() {
             const scriptCode = document.getElementById('script-code').innerText;
