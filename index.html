@@ -221,15 +221,17 @@ task.spawn(updateNamePeriodically)
             const reviews = document.querySelectorAll('.review-card');
             let position = 100;
             const speed = 0.1; // Adjust this value to make the movement slower or faster
+            const reviewWidth = 33; // Width of the review cards in percentage
+            const gap = 10; // Gap between the review cards in percentage
 
             function animate() {
-                reviews.forEach(review => {
-                    review.style.transform = `translateX(${position}%)`;
+                reviews.forEach((review, index) => {
+                    review.style.transform = `translateX(${position - (index * (reviewWidth + gap))}%)`;
+                    if (position - (index * (reviewWidth + gap)) < -reviewWidth) {
+                        position += reviewWidth + gap;
+                    }
                 });
                 position -= speed;
-                if (position < -100) {
-                    position = 100;
-                }
                 requestAnimationFrame(animate);
             }
 
